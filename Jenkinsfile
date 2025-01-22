@@ -17,12 +17,12 @@ pipeline{
         stage("Push To DockerHub"){
             steps{
                 withCredentials([usernamePassword(
-                    credentialsId:"dockerHubCreds",
-                    usernameVariable:"dockerHubUser", 
-                    passwordVariable:"dockerHubPass")]){
-                sh 'echo $dockerHubPass | docker login -u $dockerHubUser --password-stdin'
-                sh "docker image tag node-app:latest ${env.dockerHubUser}/node-app:latest"
-                sh "docker push ${env.dockerHubUser}/node-app:latest"
+                    credentialsId:"dockerhubCreds",
+                    usernameVariable:"dockerhubUser", 
+                    passwordVariable:"dockerhubPass")]){
+                sh 'echo $dockerhubPass | docker login -u $dockerhubUser --password-stdin'
+                sh "docker image tag node-app:latest ${env.dockerhubUser}/node-app:latest"
+                sh "docker push ${env.dockerhubUser}/node-app:latest"
                 }
             }
         }
